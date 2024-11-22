@@ -1,0 +1,17 @@
+{
+  "name": "item-management-system-backend",
+  "version": "1.0.0",
+  "description": "Backend for Item Management Sytem App",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "author": "ovie",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  }
+}
