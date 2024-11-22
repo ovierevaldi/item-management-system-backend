@@ -6,12 +6,18 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "migrate:postgres": "dotenv -e .env.development -- npx prisma migrate dev"
   },
   "author": "ovie",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.22.0",
     "dotenv": "^16.4.5",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.22.0"
   }
 }
