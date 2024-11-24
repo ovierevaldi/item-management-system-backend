@@ -20,8 +20,9 @@ export default class Seed{
 
     }
 
-    async disconnectErrorPrisma(){
+    async disconnectErrorPrisma(err){
         console.log(`Error on Creating ${this.tableName} seed Table`);
+        console.log(err)
         await this.prisma.$disconnect();
     }
 }

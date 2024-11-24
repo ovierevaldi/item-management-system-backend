@@ -12,7 +12,7 @@ const app = express()
 const port = process.env.PORT || 3001;
 
 // Create default seed for testing
-db().createSeed()
+db().createSeeds()
 
 const corsOptions = {
   origin: 'http://localhost:4500'

@@ -7,7 +7,7 @@ const prisma = new PrismaClient;
 
 const db = () => {
   
-  const createSeed = () => {
+  const createSeeds = () => {
     const userSeed = new UserSeed('User');
     const itemSeed = new ItemSeed('Item')
     const seeds = [userSeed, itemSeed];
@@ -16,18 +16,16 @@ const db = () => {
     .then((results) => {
         results.forEach((result, index) =>{
           if(result.status === 'rejected'){
-            seeds[index].disconnectErrorPrisma();
-            console.log(result.reason)
+            seeds[index].disconnectErrorPrisma(result.reason);
           }
         })
     })
-
   }
 
   return{
     userTable: prisma.user,
     itemTable: prisma.item,
-    createSeed
+    createSeeds
   }
 }
 
