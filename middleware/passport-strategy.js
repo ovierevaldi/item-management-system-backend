@@ -18,7 +18,7 @@ const passportProvider = {
     signIn : (req, res, next) => {
         passport.authenticate('local', {session: false}, (err, user, info) => {
             if(err){
-                return res.status(err.statusCode).json({message: err.message});
+                return res.status(err.statusCode).json({message: err.message, statusCode: err.statusCode});
             }
             res.status(200).json(user)
 

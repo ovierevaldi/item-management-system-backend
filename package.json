@@ -7,8 +7,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
-    "migrate:postgres": "dotenv -e .env.development -- npx prisma migrate dev",
-    "openPrismaStudio": "dotenv -e .env.development -- npx prisma studio"
+    "migrate": "dotenv -e .env.development -- npx prisma migrate dev",
+    "migrate:deploy": "dotenv -e .env.development -- npx prisma deploy",
+    "open-prisma-studio": "dotenv -e .env.development -- npx prisma studio"
   },
   "author": "ovie",
   "license": "ISC",
