@@ -1,29 +1,33 @@
 import { PrismaClient } from "@prisma/client"
 
-const db = (overrideFunction = async () => {}) => {
-  const prisma = new PrismaClient;
+import UserSeed from "./prisma/seeds/user-seed.js";
+import ItemSeed from "./prisma/seeds/item-seed.js";
 
-  async function main() {
-    try {
-        await overrideFunction();        
-    } catch (error) {
-        console.log(error);
-    }
+const prisma = new PrismaClient;
+
+const db = () => {
+  
+  const createSeed = () => {
+    const userSeed = new UserSeed('User');
+    const itemSeed = new ItemSeed('Item')
+    const seeds = [userSeed, itemSeed];
+
+    Promise.allSettled(seeds.map((seed) => seed.init()))
+    .then((results) => {
+        results.forEach((result, index) =>{
+          if(result.status === 'rejected'){
+            seeds[index].disconnectErrorPrisma();
+            console.log(result.reason)
+          }
+        })
+    })
+
   }
-
-  main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
-  .catch( async (e) => {
-    console.log(e);
-    await prisma.$disconnect();
-    process.exit(1)
-  });
 
   return{
     userTable: prisma.user,
-    prisma
+    itemTable: prisma.item,
+    createSeed
   }
 }
 

@@ -1,8 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import userSeed from './prisma/seed/seed.js';
+
 import apiRouter from './routes/api.route.js';
+import db from './db.js';
 
 const envFile = process.env.NODE_ENV === 'production' ? '.env' : '.env.development';
 dotenv.config({path: envFile});
@@ -10,7 +11,8 @@ dotenv.config({path: envFile});
 const app = express()
 const port = process.env.PORT || 3001;
 
-userSeed.init();
+// Create default seed for testing
+db().createSeed()
 
 const corsOptions = {
   origin: 'http://localhost:4500'
