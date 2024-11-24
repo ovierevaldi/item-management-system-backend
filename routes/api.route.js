@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.use('/user', userRouter);
 router.use('/auth', authRouter);
-router.use('/item', itemRouter);
+router.use('/items', itemRouter);
 router.use('/pos', posRouter);
 
 

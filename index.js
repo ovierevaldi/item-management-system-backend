@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import apiRouter from './routes/api.route.js';
 import db from './db.js';
+import checkBodyParser from './middleware/check-body-parser.js';
 
 const envFile = process.env.NODE_ENV === 'production' ? '.env' : '.env.development';
 dotenv.config({path: envFile});
@@ -21,6 +22,9 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+// Handle body parser error
+app.use(checkBodyParser);
 
 app.use('/api', apiRouter);
 
