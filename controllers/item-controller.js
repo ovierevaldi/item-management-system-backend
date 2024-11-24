@@ -1,5 +1,6 @@
 import { Prisma } from "@prisma/client";
 import db from "../db.js";
+import itemCategory from "../configs/config.js";
 
 const { itemTable } = db();
 
@@ -47,7 +48,10 @@ export default class ItemController{
             })
 
             if(!item)
-                return res.status(404).json({message: 'Item not exsist'})
+                return res.status(404).json({message: 'Item not exsist'});
+            
+            // check category
+            // itemCategory.isInCategory(item.kategori)
 
             return res.status(200).json(item)
         } catch (error) {
