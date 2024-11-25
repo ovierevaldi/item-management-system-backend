@@ -17,7 +17,8 @@ export default class POSController{
                             kategori: true,
                             harga: true
                         }
-                    }
+                    },
+                    createdAt: true
                 }
             });
 
@@ -70,6 +71,8 @@ export default class POSController{
             if(!item)
                 return res.status(404).json({message: "Item not found"});
 
+            if(item.stok <= 0)
+                return res.status(400).json({message: "Stok habis"})
 
             // Check stock
             if(transactionData.jumlah_item > item.stok)
@@ -100,7 +103,7 @@ export default class POSController{
                     }
                 });
                 
-                res.status(200).json({message: "Success Input Transaction.", new_data: updated_item})
+                res.status(200).json({message: "Success Input Transaction."})
             }
         } catch (error) {
             console.log(error);

@@ -29,4 +29,5 @@ model Transaction {
   total_harga       Int
   item_id           Int
   item_data         Item    @relation(fields: [item_id], references: [id])
+  createdAt DateTime @default(now())
 }
