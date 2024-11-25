@@ -28,6 +28,35 @@ export default class POSController{
         }
     }
 
+    static async findOne(req, res){
+        const id = req.params.id;
+
+        try {
+            const transaction = await transactionTable.findUnique({
+                where: {
+                    id: +id
+                },
+                select: {
+                    id: true,
+                    jumlah_item: true,
+                    total_harga: true,
+                    item_data: {
+                        select:{
+                            id: true,
+                            kategori: true,
+                            harga: true
+                        }
+                    }
+                }
+            });
+
+            res.status(200).json(transaction);
+        } catch (error) {
+            console.log(error);
+            res.status(400).json({message: `Cannot get transaction with id ${id}`})        
+        }
+    }
+
     static async createTransaction(req, res){
         const transactionData = req.body;
 
