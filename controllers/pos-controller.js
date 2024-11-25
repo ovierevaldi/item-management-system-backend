@@ -6,7 +6,21 @@ const { itemTable, transactionTable } = db();
 export default class POSController{
     static async findAll(req, res){
         try {
-            const transactions = await transactionTable.findMany();
+            const transactions = await transactionTable.findMany({
+                select: {
+                    id: true,
+                    jumlah_item: true,
+                    total_harga: true,
+                    item_data: {
+                        select:{
+                            id: true,
+                            kategori: true,
+                            harga: true
+                        }
+                    }
+                }
+            });
+
             res.status(200).json(transactions);
         } catch (error) {
             console.log(error);

@@ -20,11 +20,13 @@ model Item {
   stok          Int
   kategori      String
   url_gambar    String
+  transactions  Transaction[]
 }
 
 model Transaction {
   id                Int     @id @default(autoincrement())
-  item_id           Int
   jumlah_item       Int
   total_harga       Int
+  item_id           Int
+  item_data         Item    @relation(fields: [item_id], references: [id])
 }
