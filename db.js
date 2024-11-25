@@ -25,6 +25,7 @@ const db = () => {
   return{
     userTable: prisma.user,
     itemTable: prisma.item,
+    transactionTable: prisma.transaction,
     createSeeds
   }
 }

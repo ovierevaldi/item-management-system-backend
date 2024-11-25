@@ -21,3 +21,10 @@ model Item {
   kategori      String
   url_gambar    String
 }
+
+model Transaction {
+  id                Int     @id @default(autoincrement())
+  item_id           Int
+  jumlah_item       Int
+  total_harga       Int
+}

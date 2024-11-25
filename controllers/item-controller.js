@@ -39,7 +39,6 @@ export default class ItemController{
 
     static async getItem(req, res){
         const id = req.params.id;
-
         try {
             const item = await itemTable.findUnique({
                 where: {
