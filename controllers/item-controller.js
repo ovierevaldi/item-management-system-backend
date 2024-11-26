@@ -118,4 +118,27 @@ export default class ItemController{
             res.status(400).json({message: `Cannot get Item with id: ${id}`})
         }
     }
+
+    static async getStock(req, res){
+        try {
+            const items =  await itemTable.findMany({
+                select: {
+                    id: true,
+                    nama: true,
+                    stok: true,
+                    harga: true
+                }
+            });
+
+            const items_stock = items.map((item) => {
+                const onStock = item.stok > 0 ? true : false;
+                return {...item, onStock}
+            })
+
+            res.status(200).json(items_stock)
+         } catch (error) {
+             console.log(error);
+             res.status(400).json({message: 'Cannot Show Items'})
+         }
+    }
 }

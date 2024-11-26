@@ -31,7 +31,7 @@ export default class POSController{
 
     static async findOne(req, res){
         const id = req.params.id;
-
+        console.log(id)
         try {
             const transaction = await transactionTable.findUnique({
                 where: {
@@ -89,12 +89,12 @@ export default class POSController{
                 }
 
                 // Create new Transaction
-                await transactionTable.create({
+                const new_transaction = await transactionTable.create({
                     data: transactionPayload
                 });
 
                 // Update stok item
-                const updated_item = await itemTable.update({
+                await itemTable.update({
                     where: {
                         id: item.id
                     },
@@ -103,7 +103,7 @@ export default class POSController{
                     }
                 });
                 
-                res.status(200).json({message: "Success Input Transaction."})
+                res.status(200).json({message: "Success Input Transaction.", ref: new_transaction.id})
             }
         } catch (error) {
             console.log(error);

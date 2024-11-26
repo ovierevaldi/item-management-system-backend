@@ -12,7 +12,6 @@ router.use('/user', userRouter);
 router.use('/auth', authRouter);
 router.use('/items', itemRouter);
 router.use('/pos', posRouter);
-router.use('/categories', categoriesRoute)
-
+router.use('/categories', categoriesRoute);
 
 export default router;
