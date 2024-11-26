@@ -31,7 +31,6 @@ export default class POSController{
 
     static async findOne(req, res){
         const id = req.params.id;
-        console.log(id)
         try {
             const transaction = await transactionTable.findUnique({
                 where: {
