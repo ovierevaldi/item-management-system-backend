@@ -206,7 +206,7 @@ router.get('/', ItemController.showItems);
 
 /**
  * @swagger
- * /api/items{id}:
+ * /api/items/{id}:
  *   get:
  *     summary: Get an item by ID
  *     description: Retrieves a single item by its unique identifier (ID).

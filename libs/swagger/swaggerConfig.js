@@ -10,10 +10,16 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: process.env.SERVER_URL
+                url: 'http://localhost:3000',
+                description: 'Local Development Server',
+            },
+            {
+                url: process.env.SERVER_URL,
+                description: 'Production Server',
             }
         ],
     },
+   
     apis: ['./routes/*.js', './routes/pos/*.js']
 };
 
