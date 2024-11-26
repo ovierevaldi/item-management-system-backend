@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "prisma generate && node index.js",
     "start:dev": "node --watch index.js",
     "migrate": "dotenv -e .env.development -- npx prisma migrate dev",
     "migrate:deploy": "dotenv -e .env.development -- npx prisma deploy",
